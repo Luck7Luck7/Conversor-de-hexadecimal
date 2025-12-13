@@ -115,13 +115,13 @@ void main() {
         }
 
     }
-    if (operacao == 'B') {
+    if (operacao == 'B' | operacao == 'b') {
         System.out.print("O Hexadecimal " + decima_H + " para binario : ");
 
         for (int i = 0; i < binario.toArray().length; i++) {
             System.out.print(binario.get(i));
         }
-    } else if (operacao == 'D'){
+    } else if (operacao == 'D' | operacao == 'd'){
 
         int soma = 0;
         int ex = 0;
