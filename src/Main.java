@@ -1,7 +1,11 @@
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-
+/*
+public static int multiplicar(int a, int b) {
+   return a * b;
+}
+*/
 void main() {
     Scanner input = new Scanner(System.in);
 
