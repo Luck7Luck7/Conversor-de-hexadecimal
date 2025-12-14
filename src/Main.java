@@ -1,4 +1,5 @@
-import javax.swing.*;
+import converter.Binario;
+
 import java.util.ArrayList;
 import java.util.List;
 /*
@@ -8,6 +9,7 @@ public static int multiplicar(int a, int b) {
 */
 void main() {
     Scanner input = new Scanner(System.in);
+    Binario converter = new Binario();
 
     System.out.print("Digite o valor em Hexadecimal: ");
     String decima_H = input.next();
@@ -126,16 +128,9 @@ void main() {
             System.out.print(binario.get(i));
         }
     } else if (operacao == 'D' | operacao == 'd'){
-
-        int soma = 0;
-        int ex = 0;
-        for (int i = binario.size() - 1; i >= 0; i--) {
-            soma += binario.get(i) * Math.pow(2, ex);
-            ex++;
-        }
+        int soma = converter.binario_decimal(binario);
         System.out.print("O Hexadecimal " + decima_H + " para decimal: " + soma);
 
     }
-
 }
 
