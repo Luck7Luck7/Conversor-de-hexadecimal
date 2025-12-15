@@ -8,6 +8,7 @@ public class Binario {
 
         int soma = 0;
         int ex = 0;
+
         for (int i = binario.size() - 1; i >= 0; i--) {
             soma += binario.get(i) * Math.pow(2, ex);
             ex++;
@@ -20,32 +21,40 @@ public class Binario {
         int cont = 0;
         int decimal;
         List<Integer> binarioHexa = new ArrayList<>();
+//        System.out.println(binario.size());
 
-        for (int i = binario.size() - 1; i <= 0; i--) {
-            cont++;
+        for (int i = binario.size() - 1; i >= 0; i--) {
 
+
+            if (i == 0 & binarioHexa.size() != 4) {
+                cont = 4;
+                binarioHexa.add(0, binario.get(i));
+            }
+
+            if (cont < 4){
+                cont++;
+                binarioHexa.add(0, binario.get(i));
+            }
 
             if (cont == 4) {
                 cont = 0;
                 decimal = binario_decimal(binarioHexa);
-
+                binarioHexa.clear();
                 if (decimal > 9) {
                     switch (decimal) {
-                        case 10: hexadecimal.append("A");
-                        case 11: hexadecimal.append("B");
-                        case 12: hexadecimal.append("C");
-                        case 13: hexadecimal.append("D");
-                        case 14: hexadecimal.append("E");
-                        case 15: hexadecimal.append("F");
+                        case 10: hexadecimal.insert(0,"A"); break;
+                        case 11: hexadecimal.insert(0,"B"); break;
+                        case 12: hexadecimal.insert(0,"C"); break;
+                        case 13: hexadecimal.insert(0,"D"); break;
+                        case 14: hexadecimal.insert(0,"E"); break;
+                        case 15: hexadecimal.insert(0,"F"); break;
 
                     }
-                    binarioHexa.clear();
+
                 } else {
-                    hexadecimal.append(decimal);
+                    hexadecimal.insert(0, decimal);
                 }
 
-            } else {
-                binarioHexa.add(i);
             }
         }
         return hexadecimal;
@@ -156,11 +165,19 @@ public class Binario {
         }
         return binario;
     }
-    public List<Integer> Decimal_binario(String decimal) {
+    public List<Integer> decimal_binario(String decimal) {
         int dividendo = Integer.parseInt(decimal);
+        int resto;
         List<Integer> binario = new ArrayList<>();
         do {
+            resto = dividendo % 2;
+            binario.add(0,resto);
 
+            dividendo /= 2;
+
+            if (dividendo == 1) {
+                binario.add(0,dividendo);
+            }
         }while (dividendo != 1);
         return binario;
     }
