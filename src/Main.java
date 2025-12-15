@@ -1,136 +1,68 @@
-import javax.swing.*;
-import java.util.ArrayList;
+import converter.Binario;
+
 import java.util.List;
 
 void main() {
     Scanner input = new Scanner(System.in);
+    Binario converter = new Binario();
 
-    System.out.print("Digite o valor em Hexadecimal: ");
-    String decima_H = input.next();
+    System.out.print("Digite qual é o primeiro tipo do valor (B) para binario, (D) para decimal e (H)hexadecimal: ");
+    char operacaoTipo1 = input.next().charAt(0);
+    System.out.print("Qual conversão você quer fazer, digite (B) para binario, (D) para decimal e (H)hexadecimal: ");
+    char operacaoTipo2 = input.next().charAt(0);
 
-    System.out.print("Qual conversão você quer fazer, digite (B) para binario e (D) para decimal: ");
-    char operacao = input.next().charAt(0);
+    String valorInput = "0";
+    List<Integer> binarioConvertido = new ArrayList<>();
 
+    switch (operacaoTipo1) {
+        case 'B':
+            System.out.print("Digite o número em binário: ");
+            valorInput = input.next();
+            for (int i = 0; i < valorInput.length(); i++) {
+                binarioConvertido.add(Character.getNumericValue(valorInput.charAt(i)));
+            }
 
-
-    List<Integer> binario = new ArrayList<>();
-    for (int i = 0; i < decima_H.length(); i++) {
-        switch (decima_H.toLowerCase().charAt(i)) {
-            case '0':
-                binario.add(0);
-                binario.add(0);
-                binario.add(0);
-                binario.add(0);
-                break;
-            case '1':
-                binario.add(0);
-                binario.add(0);
-                binario.add(0);
-                binario.add(1);
-                break;
-            case '2':
-                binario.add(0);
-                binario.add(0);
-                binario.add(1);
-                binario.add(0);
-                break;
-            case '3':
-                binario.add(0);
-                binario.add(0);
-                binario.add(1);
-                binario.add(1);
-                break;
-            case '4':
-                binario.add(0);
-                binario.add(1);
-                binario.add(0);
-                binario.add(0);
-                break;
-            case '5':
-                binario.add(0);
-                binario.add(1);
-                binario.add(0);
-                binario.add(1);
-                break;
-            case '6':
-                binario.add(0);
-                binario.add(1);
-                binario.add(1);
-                binario.add(0);
-                break;
-            case '7':
-                binario.add(0);
-                binario.add(1);
-                binario.add(1);
-                binario.add(1);
-                break;
-            case '8':
-                binario.add(1);
-                binario.add(0);
-                binario.add(0);
-                binario.add(0);
-                break;
-            case '9':
-                binario.add(1);
-                binario.add(0);
-                binario.add(0);
-                binario.add(1);
-                break;
-            case 'a':
-                binario.add(1);
-                binario.add(0);
-                binario.add(1);
-                binario.add(0);
-                break;
-            case 'b':
-                binario.add(1);
-                binario.add(0);
-                binario.add(1);
-                binario.add(1);
-                break;
-            case 'c':
-                binario.add(1);
-                binario.add(1);
-                binario.add(0);
-                binario.add(0);
-                break;
-            case 'd':
-                binario.add(1);
-                binario.add(1);
-                binario.add(0);
-                binario.add(1);
-                break;
-            case 'e':
-                binario.add(1);
-                binario.add(1);
-                binario.add(1);
-                binario.add(0);
-                break;
-            case 'f':
-                binario.add(1);
-                binario.add(1);
-                binario.add(1);
-                binario.add(1);
-                break;
-        }
-
+            break;
+        case 'D':
+            System.out.print("Digite o número em decimal: ");
+            valorInput = input.next();
+            binarioConvertido = converter.decimal_binario(valorInput);
+            break;
+        case 'H':
+            System.out.print("Digite o número em hexadecimal: ");
+            valorInput = input.next();
+            binarioConvertido = converter.hexadecimal_Binario(valorInput);
+            break;
     }
-    if (operacao == 'B' | operacao == 'b') {
-        System.out.print("O Hexadecimal " + decima_H + " para binario : ");
 
-        for (int i = 0; i < binario.toArray().length; i++) {
-            System.out.print(binario.get(i));
-        }
-    } else if (operacao == 'D' | operacao == 'd'){
+    switch (operacaoTipo2) {
+        case 'B':
+            if (operacaoTipo1 == operacaoTipo2) {
+                System.out.println("Convertido para o mesmo tipo: " + valorInput);
+            } else {
+                System.out.print("O valor convertido é : ");
+                for (int i = 0; i < binarioConvertido.size(); i++) {
+                    System.out.print(binarioConvertido.get(i));
+                }
+            }
+            break;
+        case 'D':
+            if (operacaoTipo1 == operacaoTipo2) {
+                System.out.println("Convertido para o mesmo tipo: " + valorInput);
+            } else {
+                int decimal = converter.binario_decimal(binarioConvertido);
+                System.out.println("O valor convertido é :" + decimal);
+            }
+            break;
+        case 'H':
+            if (operacaoTipo1 == operacaoTipo2) {
+                System.out.println("Convertido para o mesmo tipo: " + valorInput);
+            } else {
+                StringBuilder hexadecimal = converter.binario_hexadecimal(binarioConvertido);
+                System.out.println("O valor convertido é :" + hexadecimal);
+            }
 
-        int soma = 0;
-        int ex = 0;
-        for (int i = binario.size() - 1; i >= 0; i--) {
-            soma += binario.get(i) * Math.pow(2, ex);
-            ex++;
-        }
-        System.out.print("O Hexadecimal " + decima_H + " para decimal: " + soma);
-
+            break;
     }
 
 }
