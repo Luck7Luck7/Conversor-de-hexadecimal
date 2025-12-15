@@ -1,35 +1,56 @@
 import converter.Binario;
 
-import java.util.ArrayList;
 import java.util.List;
-/*
-public static int multiplicar(int a, int b) {
-   return a * b;
-}
-*/
+
 void main() {
     Scanner input = new Scanner(System.in);
     Binario converter = new Binario();
 
-    System.out.print("Digite o valor em Hexadecimal: ");
-    String decima_H = input.next();
+    System.out.print("Digite qual é o primeiro tipo do valor (B) para binario, (D) para decimal e (H)hexadecimal: ");
+    char operacaoTipo1 = input.next().charAt(0);
+    System.out.print("Qual conversão você quer fazer, digite (B) para binario, (D) para decimal e (H)hexadecimal: ");
+    char operacaoTipo2 = input.next().charAt(0);
 
-    System.out.print("Qual conversão você quer fazer, digite (B) para binario e (D) para decimal: ");
-    char operacao = input.next().charAt(0);
+    String valorInput = input.next();
+    List<Integer> binarioConvertido;
 
-    List<Integer> binario;
-    binario = converter.hexadecimal_Binario(decima_H);
+    switch (operacaoTipo1) {
+        case 'B':
+            System.out.print("Digite o número em binário: ");
+            valorInput = input.next();
+        case 'D':
+            System.out.print("Digite o número em decimal: ");
+            valorInput = input.next();
 
-    if (operacao == 'B' | operacao == 'b') {
-        System.out.print("O Hexadecimal " + decima_H + " para binario : ");
+        case 'H':
+            System.out.print("Digite o número em hexadecimal: ");
+            valorInput = input.next();
+            binarioConvertido = converter.hexadecimal_Binario(valorInput);
+    }
 
-        for (int i = 0; i < binario.toArray().length; i++) {
-            System.out.print(binario.get(i));
-        }
-    } else if (operacao == 'D' | operacao == 'd'){
-        int soma = converter.binario_decimal(binario);
-        System.out.print("O Hexadecimal " + decima_H + " para decimal: " + soma);
+    switch (operacaoTipo2) {
+        case 'B':
+            if (operacaoTipo1 == operacaoTipo2) {
+                System.out.println("Convertido para o mesmo tipo: " + valorInput);
+            } else {
+
+            }
+        case 'D':
+
+            if (operacaoTipo1 == operacaoTipo2) {
+                System.out.println("Convertido para o mesmo tipo: " + valorInput);
+            } else {
+
+            }
+        case 'H':
+            if (operacaoTipo1 == operacaoTipo2) {
+                System.out.println("Convertido para o mesmo tipo: " + valorInput);
+            } else {
+
+            }
+
 
     }
+
 }
 
