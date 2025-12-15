@@ -6,10 +6,10 @@ void main() {
     Scanner input = new Scanner(System.in);
     Binario converter = new Binario();
 
-    System.out.print("Digite qual é o primeiro tipo do valor (B) para binario, (D) para decimal e (H)hexadecimal: ");
-    char operacaoTipo1 = input.next().charAt(0);
-    System.out.print("Qual conversão você quer fazer, digite (B) para binario, (D) para decimal e (H)hexadecimal: ");
-    char operacaoTipo2 = input.next().charAt(0);
+    System.out.print("Digite qual é o primeiro tipo do valor (B) para binario, (D) para decimal e (H) hexadecimal: ");
+    char operacaoTipo1 = Character.toUpperCase(input.next().charAt(0));
+    System.out.print("Qual conversão você quer fazer, digite (B) para binario, (D) para decimal e (H) hexadecimal: ");
+    char operacaoTipo2 = Character.toUpperCase(input.next().charAt(0));
 
     String valorInput = "0";
     List<Integer> binarioConvertido = new ArrayList<>();
@@ -40,7 +40,7 @@ void main() {
             if (operacaoTipo1 == operacaoTipo2) {
                 System.out.println("Convertido para o mesmo tipo: " + valorInput);
             } else {
-                System.out.print("O valor convertido é : ");
+                System.out.print("O valor convertido é: ");
                 for (int i = 0; i < binarioConvertido.size(); i++) {
                     System.out.print(binarioConvertido.get(i));
                 }
@@ -51,7 +51,7 @@ void main() {
                 System.out.println("Convertido para o mesmo tipo: " + valorInput);
             } else {
                 int decimal = converter.binario_decimal(binarioConvertido);
-                System.out.println("O valor convertido é :" + decimal);
+                System.out.println("O valor convertido é: " + decimal);
             }
             break;
         case 'H':
@@ -59,7 +59,7 @@ void main() {
                 System.out.println("Convertido para o mesmo tipo: " + valorInput);
             } else {
                 StringBuilder hexadecimal = converter.binario_hexadecimal(binarioConvertido);
-                System.out.println("O valor convertido é :" + hexadecimal);
+                System.out.println("O valor convertido é: " + hexadecimal);
             }
 
             break;
